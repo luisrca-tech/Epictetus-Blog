@@ -14,7 +14,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <div className="to-gradient-primary from-gradient-secondary min-h-screen bg-gradient-to-t">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
