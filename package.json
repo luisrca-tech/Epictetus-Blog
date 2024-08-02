@@ -6,8 +6,12 @@
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev",
-		"lint": "biome lint --write --no-errors-on-unmatched",
-		"format": "biome format --write --no-errors-on-unmatched",
+		"lint": "biome lint",
+		"lint:fix": "biome lint --write",
+		"lint:force": "biome lint --write --unsafe",
+		"format": "biome format",
+		"format:fix": "biome format --write",
+		"format:force": "biome format --write --unsafe",
 		"start": "next start"
 	},
 	"dependencies": {
