@@ -8,13 +8,13 @@ export default {
     colors: {
       white: "rgb(var(--white) / <alpha-value>)",
       base: {
-        primary: "rgb(var(--primary) / <alpha-value>)",
-        secondary: "rgb(var(--secondary) / <alpha-value>)",
-        tertiary: "rgb(var(--tertiary) / <alpha-value>)",
+        100: "rgb(var(--100) / <alpha-value>)",
+        200: "rgb(var(--200) / <alpha-value>)",
+        300: "rgb(var(--300) / <alpha-value>)",
       },
       gradient: {
-        primary: "rgb(var(--gradient-primary) / <alpha-value>)",
-        secondary: "rgb(var(--gradient-secondary) / <alpha-value>)",
+        100: "rgb(var(--gradient-100) / <alpha-value>)",
+        200: "rgb(var(--gradient-200) / <alpha-value>)",
       },
     },
     fontFamily: {

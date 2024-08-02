@@ -6,11 +6,11 @@
   :root {
     --white: 255 255 255;
 
-    --primary: 196 196 196;
-    --secondary: 31 41 55;
-    --tertiary: 75 85 99;
+    --100: 196 196 196;
+    --200: 31 41 55;
+    --300: 75 85 99;
 
-    --gradient-primary: 55 65 81;
-    --gradient-secondary: 17 24 39;
+    --gradient-100: 55 65 81;
+    --gradient-200: 17 24 39;
   }
 }
