@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-        <div className="to-gradient-primary from-gradient-secondary min-h-screen bg-gradient-to-t">
+        <div className="to-gradient-100 from-gradient-200 min-h-screen bg-gradient-to-t">
           {children}
         </div>
       </body>
