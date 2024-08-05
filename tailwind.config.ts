@@ -1,10 +1,8 @@
-import { type Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
+import type { Config } from "tailwindcss";
 
 export default {
   content: ["./src/**/*.tsx"],
   theme: {
-    extend: {},
     colors: {
       white: "rgb(var(--white) / <alpha-value>)",
       base: {
@@ -17,8 +15,10 @@ export default {
         200: "rgb(var(--gradient-200) / <alpha-value>)",
       },
     },
-    fontFamily: {
-      sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+    extend: {
+      fontFamily: {
+        inter: ["var(--font-inter)"],
+      },
     },
   },
   plugins: [],
