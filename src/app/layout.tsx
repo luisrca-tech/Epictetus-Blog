@@ -15,7 +15,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable}`}>
-      <body>{children}</body>
+      <body className="min-h-screen bg-gradient-to-t from-gradient-200 to-gradient-100">
+        {children}
+      </body>
     </html>
   );
 }
