@@ -1,7 +1,7 @@
 import '~/styles/globals.css';
 
-import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
+import { inter } from '~/assets/fonts/inter';
 
 export const metadata: Metadata = {
 	title: 'Epictetus',
@@ -14,8 +14,10 @@ export default function RootLayout({
 	children
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<html lang="en" className={`${GeistSans.variable}`}>
-			<body>{children}</body>
+		<html lang="en" className={`${inter.variable}`}>
+			<body className="min-h-screen bg-gradient-to-t from-gradient-200 to-gradient-100">
+				{children}
+			</body>
 		</html>
 	);
 }
