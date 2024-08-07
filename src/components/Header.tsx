@@ -5,6 +5,7 @@ import Menu from '/public/images/menu.png';
 import Search from '/public/images/search.png';
 
 import { HeaderNavigationItems } from '~/constants/HeaderNavigationItems';
+import { Container } from './ui/Container';
 import {
 	Sheet,
 	SheetContent,
@@ -17,7 +18,7 @@ import {
 export function Header() {
 	return (
 		<header>
-			<div className="flex items-center justify-between px-[1.875rem] pt-9 pb-8 lg:px-20 lg:pt-20 lg:pb-[3.8125rem] 2xl:px-[11.25rem]">
+			<Container className="flex items-center justify-between pt-9 pb-8 lg:pt-20 lg:pb-[3.8125rem]">
 				<div className="lg:hidden">
 					<Sheet>
 						<SheetOverlay />
@@ -88,7 +89,7 @@ export function Header() {
 						/>
 					</div>
 				</div>
-			</div>
+			</Container>
 		</header>
 	);
 }
