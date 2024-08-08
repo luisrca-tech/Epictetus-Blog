@@ -13,7 +13,7 @@ import Author2 from '/public/images/author-2.png';
 import Author3 from '/public/images/author-3.png';
 import Author4 from '/public/images/author-4.png';
 
-export const PostContentItems: PostContent[] = [
+export const PostContentMock: PostContent[] = [
 	{
 		id: 1,
 		image: Post1,
