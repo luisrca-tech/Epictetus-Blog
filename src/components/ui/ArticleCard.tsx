@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import type { PostContent } from '~/types/PostContent.type';
 
 export function ArticleCard({ post }: { post: PostContent }) {
@@ -21,9 +22,12 @@ export function ArticleCard({ post }: { post: PostContent }) {
 						{post.publishedAt}
 					</span>
 				</div>
-				<p className="font-normal text-2xl text-white leading-[2.375rem]">
+				<Link
+					href="#"
+					className="font-normal text-2xl text-white leading-[2.375rem]"
+				>
 					{post.title}
-				</p>
+				</Link>
 				<p
 					className={`font-normal text-base text-white/60 leading-7 md:min-h-[8.75rem] lg:min-h-[8.75rem] 2xl:text-lg ${post.featured && 'md:min-h-full'}`}
 				>
