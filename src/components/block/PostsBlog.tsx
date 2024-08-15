@@ -1,3 +1,4 @@
+import { cn } from '~/lib/utils';
 import { PostContentMock } from '~/mock/PostContentMock';
 import { ArticleCard } from '../ui/ArticleCard';
 
@@ -7,7 +8,7 @@ export function PostsBlog() {
 			{PostContentMock.map((post) => (
 				<div
 					key={post.id}
-					className={`${post.featured && 'md:col-span-3 lg:col-span-3'} mb-[3.75rem]`}
+					className={cn(`${post.featured && 'md:col-span-full'} mb-[3.75rem]`)}
 				>
 					<ArticleCard post={post} />
 				</div>
