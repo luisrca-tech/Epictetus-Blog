@@ -26,7 +26,8 @@ export const PostContentMock: PostContent[] = [
 		avatar: Author1,
 		author: 'Leslie Alexander',
 		authorRole: 'Ui Designer',
-		featured: true
+		featured: true,
+		slug: 'understanding-color-theory'
 	},
 	{
 		id: 2,
@@ -39,7 +40,8 @@ export const PostContentMock: PostContent[] = [
 		avatar: Author2,
 		author: 'Jenny Wilson',
 		authorRole: 'Product Designer',
-		featured: false
+		featured: false,
+		slug: 'how-to-design-a-product'
 	},
 	{
 		id: 3,
@@ -52,7 +54,8 @@ export const PostContentMock: PostContent[] = [
 		avatar: Author3,
 		author: 'Esther Howard',
 		authorRole: 'Entrepreneur',
-		featured: false
+		featured: false,
+		slug: 'the-more-important-the-work'
 	},
 	{
 		id: 4,
@@ -65,7 +68,8 @@ export const PostContentMock: PostContent[] = [
 		avatar: Author4,
 		author: 'Robert Fox',
 		authorRole: 'Front-end Engineer',
-		featured: false
+		featured: false,
+		slug: 'email-love-email-inspiration'
 	},
 	{
 		id: 5,
@@ -78,7 +82,8 @@ export const PostContentMock: PostContent[] = [
 		avatar: Author3,
 		author: 'Esther Howard',
 		authorRole: 'Entrepreneur',
-		featured: false
+		featured: false,
+		slug: 'the-more-important-the-work'
 	},
 	{
 		id: 6,
@@ -91,7 +96,8 @@ export const PostContentMock: PostContent[] = [
 		avatar: Author4,
 		author: 'Robert Fox',
 		authorRole: 'Front-end Engineer',
-		featured: false
+		featured: false,
+		slug: 'email-love-email-inspiration'
 	},
 	{
 		id: 7,
@@ -104,6 +110,7 @@ export const PostContentMock: PostContent[] = [
 		avatar: Author2,
 		author: 'Jenny Wilson',
 		authorRole: 'Product Designer',
-		featured: false
+		featured: false,
+		slug: 'how-to-design-a-product'
 	}
 ];
