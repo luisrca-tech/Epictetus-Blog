@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { cn } from '~/lib/utils';
 import type { PostContent } from '~/types/PostContent.type';
 
 export function ArticleCard({ post }: { post: PostContent }) {
@@ -9,7 +10,7 @@ export function ArticleCard({ post }: { post: PostContent }) {
 		>
 			<Image
 				src={post.image}
-				className="md:max-w-full"
+				className={cn(`${post.featured && 'lg:w-2/3'} object-cover`)}
 				alt="A macbook connect in workspace"
 			/>
 			<div className="flex flex-col gap-[0.6875rem] pt-5">
@@ -23,7 +24,7 @@ export function ArticleCard({ post }: { post: PostContent }) {
 					</span>
 				</div>
 				<Link
-					href="#"
+					href={`/posts/${post.slug}`}
 					className="font-normal text-2xl text-white leading-[2.375rem]"
 				>
 					{post.title}
