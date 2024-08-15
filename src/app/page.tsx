@@ -5,9 +5,9 @@ export default function HomePage() {
 	return (
 		<Container>
 			<main>
-				<Container className="pt-7 pb-8">
+				<div className="pt-7 pb-8">
 					<PostsBlog />
-				</Container>
+				</div>
 			</main>
 		</Container>
 	);
