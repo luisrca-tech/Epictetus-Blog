@@ -3,12 +3,12 @@ import { Container } from '~/components/ui/Container';
 
 export default function HomePage() {
 	return (
-		<div>
+		<Container>
 			<main>
-				<Container className="pt-7 pb-8">
+				<div className="pt-7 pb-8">
 					<PostsBlog />
-				</Container>
+				</div>
 			</main>
-		</div>
+		</Container>
 	);
 }
