@@ -1,26 +1,28 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { cn } from '~/lib/utils';
-import type { PostContent } from '~/types/PostContent.type';
+'use client';
 
-export function ArticleCard({ post }: { post: PostContent }) {
+import dayjs from 'dayjs';
+import Link from 'next/link';
+import type { POSTS_QUERYResult } from 'sanity.types';
+import { cn } from '~/lib/utils';
+import { SanityImage } from '../SanityImage';
+
+export async function ArticleCard({ post }: { post: POSTS_QUERYResult[0] }) {
 	return (
 		<article
 			className={`${post.featured && 'lg:flex-row lg:gap-8'} flex flex-col`}
 		>
-			<Image
-				src={post.image}
-				className={cn(`${post.featured && 'lg:w-2/3'} object-cover`)}
-				alt="A macbook connect in workspace"
+			<SanityImage
+				image={post.mainImage}
+				className={cn(`${post.featured && 'lg:w-2/3'} w-full object-cover`)}
 			/>
 			<div className="flex flex-col gap-[0.6875rem] pt-5">
 				<div className="flex items-center gap-3">
 					<span className="font-normal text-sm text-white/60">
-						{post.category}
+						{post.categories?.map((category) => category.title)}
 					</span>
 					<div className="h-1 w-1 rounded-full bg-white/60" />
 					<span className="font-normal text-sm text-white/60">
-						{post.publishedAt}
+						{dayjs(post.publishedAt).format('MMMM D, YYYY')}
 					</span>
 				</div>
 				<Link
@@ -35,17 +37,18 @@ export function ArticleCard({ post }: { post: PostContent }) {
 					{post.description}
 				</p>
 				<div className="flex gap-4 pt-2">
-					<Image
-						src={post.avatar}
-						className="h-[3.125rem] w-[3.125rem]"
-						alt="A avatar from leslie user"
-					/>
+					{post.author?.image && (
+						<SanityImage
+							image={post.author?.image}
+							className="h-[3.125rem] w-[3.125rem]"
+						/>
+					)}
 					<div className="flex flex-col gap-2">
 						<span className="font-normal text-sm text-white">
-							{post.author}
+							{post.author?.name}
 						</span>
 						<span className="font-normal text-sm text-white/60">
-							{post.authorRole}
+							{post.author?.role}
 						</span>
 					</div>
 				</div>
