@@ -2,6 +2,7 @@ import '~/styles/globals.css';
 
 import type { Metadata } from 'next';
 import { inter } from '~/assets/fonts/inter';
+import { Footer } from '~/components/ui/Footer';
 
 export const metadata: Metadata = {
 	title: 'Epictetus',
@@ -17,9 +18,7 @@ export default function RootLayout({
 		<html lang="en" className={`${inter.variable}`}>
 			<body className="min-h-screen bg-gradient-to-t from-gradient-200 to-gradient-100">
 				{children}
-				<footer className="mt-[6.250rem] mb-14 w-full text-center text-base text-white/60 leading-7 lg:my-[6.250rem]">
-					<p>Copyright (c) 2024 - Design By luisrca-tech</p>
-				</footer>
+				<Footer />
 			</body>
 		</html>
 	);
