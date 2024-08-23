@@ -7,7 +7,8 @@ export const authorType = defineType({
 	fields: [
 		defineField({
 			name: 'name',
-			type: 'string'
+			type: 'string',
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'slug',
@@ -29,7 +30,8 @@ export const authorType = defineType({
 					type: 'string',
 					title: 'Alternative Text'
 				}
-			]
+			],
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'bio',
@@ -41,6 +43,11 @@ export const authorType = defineType({
 					lists: []
 				}
 			]
+		}),
+		defineField({
+			name: 'role',
+			type: 'string',
+			validation: (Rule) => Rule.required()
 		})
 	],
 	preview: {
