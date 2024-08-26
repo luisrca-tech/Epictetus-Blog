@@ -1,9 +1,9 @@
 'use client';
 
-import type { POSTS_QUERYResult } from 'sanity.types';
 import { cn } from '~/lib/utils';
 import { client } from '~/sanity/lib/client';
 import { POSTS_QUERY } from '~/sanity/lib/queries';
+import type { POSTS_QUERYResult } from '~/types/PostsQueryResult.type';
 import { ArticleCard } from '../ui/ArticleCard';
 
 export async function BlogList() {
