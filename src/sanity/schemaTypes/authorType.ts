@@ -16,7 +16,8 @@ export const authorType = defineType({
 			options: {
 				source: 'name',
 				maxLength: 96
-			}
+			},
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'image',
