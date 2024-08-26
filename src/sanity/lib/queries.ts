@@ -1,6 +1,6 @@
 import { groq } from 'next-sanity';
 
-export const POSTS_QUERY = groq`*[_type == "post" && defined(slug.current)][0...12] | order(publishedAt desc) {
+export const POSTS_QUERY = groq`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
     featured,
     _id,
     description,
@@ -10,7 +10,7 @@ export const POSTS_QUERY = groq`*[_type == "post" && defined(slug.current)][0...
     mainImage { ..., asset -> {..., metadata}},
     author -> {image { ..., asset -> {..., metadata}}, name, role},
     categories[]->{
-      ...
+      title
     },
 }`;
 
