@@ -26,7 +26,7 @@ export async function ArticleCard({ post }: { post: POSTS_QUERYResult[0] }) {
 					</span>
 				</div>
 				<Link
-					href={`/posts/${post.slug}`}
+					href={`/post/${post.slug}`}
 					className="font-normal text-2xl text-white leading-[2.375rem]"
 				>
 					{post.title}
