@@ -316,14 +316,62 @@ export type POSTS_QUERYResult = Array<{
 	publishedAt: string | null;
 	slug: string | null;
 	mainImage: {
-		asset: ImageAsset;
-		alt: string;
-	};
+		asset: {
+			_id: string;
+			_type: 'sanity.imageAsset';
+			_createdAt: string;
+			_updatedAt: string;
+			_rev: string;
+			originalFilename?: string;
+			label?: string;
+			title?: string;
+			description?: string;
+			altText?: string;
+			sha1hash?: string;
+			extension?: string;
+			mimeType?: string;
+			size?: number;
+			assetId?: string;
+			uploadId?: string;
+			path?: string;
+			url?: string;
+			metadata: SanityImageMetadata | null;
+			source?: SanityAssetSourceData;
+		} | null;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: 'image';
+	} | null;
 	author: {
 		image: {
-			asset: ImageAsset;
-			alt: string;
-		};
+			asset: {
+				_id: string;
+				_type: 'sanity.imageAsset';
+				_createdAt: string;
+				_updatedAt: string;
+				_rev: string;
+				originalFilename?: string;
+				label?: string;
+				title?: string;
+				description?: string;
+				altText?: string;
+				sha1hash?: string;
+				extension?: string;
+				mimeType?: string;
+				size?: number;
+				assetId?: string;
+				uploadId?: string;
+				path?: string;
+				url?: string;
+				metadata: SanityImageMetadata | null;
+				source?: SanityAssetSourceData;
+			} | null;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: 'image';
+		} | null;
 		name: string | null;
 		role: string | null;
 	} | null;
@@ -332,20 +380,119 @@ export type POSTS_QUERYResult = Array<{
 	}> | null;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  slug,  image,}
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  slug,  mainImage { ..., asset -> {..., metadata}},  author -> {image { ..., asset -> {..., metadata}}, name, role},  publishedAt,  categories[]->{      title    },    body,}
 export type POST_QUERYResult = {
 	_id: string;
-	title: string;
-	slug: Slug;
-	image: null;
-};
+	title: string | null;
+	slug: Slug | null;
+	mainImage: {
+		asset: {
+			_id: string;
+			_type: 'sanity.imageAsset';
+			_createdAt: string;
+			_updatedAt: string;
+			_rev: string;
+			originalFilename?: string;
+			label?: string;
+			title?: string;
+			description?: string;
+			altText?: string;
+			sha1hash?: string;
+			extension?: string;
+			mimeType?: string;
+			size?: number;
+			assetId?: string;
+			uploadId?: string;
+			path?: string;
+			url?: string;
+			metadata: SanityImageMetadata | null;
+			source?: SanityAssetSourceData;
+		} | null;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: 'image';
+	} | null;
+	author: {
+		image: {
+			asset: {
+				_id: string;
+				_type: 'sanity.imageAsset';
+				_createdAt: string;
+				_updatedAt: string;
+				_rev: string;
+				originalFilename?: string;
+				label?: string;
+				title?: string;
+				description?: string;
+				altText?: string;
+				sha1hash?: string;
+				extension?: string;
+				mimeType?: string;
+				size?: number;
+				assetId?: string;
+				uploadId?: string;
+				path?: string;
+				url?: string;
+				metadata: SanityImageMetadata | null;
+				source?: SanityAssetSourceData;
+			} | null;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: 'image';
+		} | null;
+		name: string | null;
+		role: string | null;
+	} | null;
+	publishedAt: string | null;
+	categories: Array<{
+		title: string | null;
+	}> | null;
+	body: Array<
+		| {
+				children?: Array<{
+					marks?: Array<string>;
+					text?: string;
+					_type: 'span';
+					_key: string;
+				}>;
+				style?: 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'normal';
+				listItem?: 'bullet';
+				markDefs?: Array<{
+					href?: string;
+					_type: 'link';
+					_key: string;
+				}>;
+				level?: number;
+				_type: 'block';
+				_key: string;
+		  }
+		| {
+				asset?: {
+					_ref: string;
+					_type: 'reference';
+					_weak?: boolean;
+					[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
+				};
+				hotspot?: SanityImageHotspot;
+				crop?: SanityImageCrop;
+				alt?: string;
+				_type: 'image';
+				_key: string;
+		  }
+	> | null;
+} | null;
+// Variable: SLUGS_QUERY
+// Query: *[_type == "post"].slug.current
+export type SLUGS_QUERYResult = Array<string | null>;
 
 // Query TypeMap
 import '@sanity/client';
-import type { ImageAsset } from 'sanity';
 declare module '@sanity/client' {
 	interface SanityQueries {
 		'*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n    featured,\n    _id,\n    description,\n    title,\n    publishedAt,\n    "slug": slug.current,\n    mainImage { ..., asset -> {..., metadata}},\n    author -> {image { ..., asset -> {..., metadata}}, name, role},\n    categories[]->{\n      title\n    },\n}': POSTS_QUERYResult;
-		'*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  image,\n}': POST_QUERYResult;
+		'*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  mainImage { ..., asset -> {..., metadata}},\n  author -> {image { ..., asset -> {..., metadata}}, name, role},\n  publishedAt,\n  categories[]->{\n      title\n    },\n    body,\n}': POST_QUERYResult;
+		'*[_type == "post"].slug.current': SLUGS_QUERYResult;
 	}
 }
