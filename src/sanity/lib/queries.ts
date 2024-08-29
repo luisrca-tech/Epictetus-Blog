@@ -10,7 +10,8 @@ export const POSTS_QUERY = groq`*[_type == "post" && defined(slug.current)] | or
     mainImage { ..., asset -> {..., metadata}},
     author -> {image { ..., asset -> {..., metadata}}, name, role},
     categories[]->{
-      title
+      title,
+      "slug": slug.current,
     },
 }`;
 
@@ -21,7 +22,14 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
   image,
 }`;
 
-export const POSTS_BY_CATEGORY_QUERY = groq`*[_type == "post" && defined(slug.current) && $category in categories[]->title] | order(publishedAt desc) {
+export const CATEGORIES_QUERY = groq`*[_type == "category"] {
+  title,
+  "slug": slug.current,
+  featuredCategory,
+}`;
+
+export const POSTS_BY_CATEGORY_QUERY = groq`
+  *[_type == "post" && defined(slug.current) && $category in categories[]->slug.current] | order(publishedAt desc) {
     featured,
     _id,
     description,
@@ -31,6 +39,8 @@ export const POSTS_BY_CATEGORY_QUERY = groq`*[_type == "post" && defined(slug.cu
     mainImage { ..., asset -> {..., metadata}},
     author -> {image { ..., asset -> {..., metadata}}, name, role},
     categories[]->{
-      title
+      title,
+      "slug": slug.current,
     },
-}`;
+  }
+`;
