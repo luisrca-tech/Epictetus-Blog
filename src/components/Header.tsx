@@ -6,7 +6,6 @@ import Search from '/public/images/search.png';
 
 import { HeaderNavigationItems } from '~/constants/HeaderNavigationItems';
 import { Container } from './ui/Container';
-import { SearchInput } from './ui/Search';
 import {
 	Sheet,
 	SheetContent,
@@ -83,7 +82,11 @@ export function Header() {
 							alt="Search input"
 							className="absolute left-3"
 						/>
-						<SearchInput />
+						<input
+							type="text"
+							placeholder="Search"
+							className="rounded-[6.25rem] bg-base-200 p-[0.5625rem] pl-9 text-base text-white"
+						/>
 					</div>
 				</div>
 			</Container>
