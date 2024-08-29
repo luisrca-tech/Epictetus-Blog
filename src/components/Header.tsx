@@ -4,7 +4,9 @@ import Link from 'next/link';
 import Menu from '/public/images/menu.png';
 import Search from '/public/images/search.png';
 
-import { HeaderNavigationItems } from '~/constants/HeaderNavigationItems';
+import { client } from '~/sanity/lib/client';
+import { CATEGORIES_QUERY } from '~/sanity/lib/queries';
+import type { CATEGORIES_QUERYResult } from '~/types/CategoriesResult.type';
 import { Container } from './ui/Container';
 import {
 	Sheet,
@@ -15,7 +17,10 @@ import {
 	SheetTrigger
 } from './ui/sheet';
 
-export function Header() {
+export async function Header() {
+	const categories =
+		await client.fetch<CATEGORIES_QUERYResult>(CATEGORIES_QUERY);
+
 	return (
 		<header>
 			<Container className="flex items-center justify-between pt-9 pb-8 lg:pt-20 lg:pb-[3.8125rem]">
@@ -43,33 +48,49 @@ export function Header() {
 							</SheetHeader>
 							<nav>
 								<ul className="flex flex-col gap-3 pt-10">
-									{HeaderNavigationItems.map((item) => (
-										<li className="text-base text-white" key={item.name}>
-											<Link href={item.href}>{item.name}</Link>
-										</li>
-									))}
+									{categories.map(
+										(category) =>
+											category.featuredCategory && (
+												<li
+													className="text-base text-white hover:text-white/60"
+													key={category.title}
+												>
+													<Link href={`/category/${category.slug}`}>
+														{category.title}
+													</Link>
+												</li>
+											)
+									)}
 								</ul>
 							</nav>
 						</SheetContent>
 					</Sheet>
 				</div>
-				<div className="flex items-center gap-3">
+				<Link href="/" className="flex items-center gap-3">
 					<div className="flex h-[2.1875rem] w-[2.1875rem] items-center justify-center rounded-[0.1875rem] bg-base-300">
 						<span className="font-semibold text-lg text-white">E</span>
 					</div>
-					<h1 className="text-lg text-white">Epictetus</h1>
-				</div>
+					<h1 className="text-lg text-white hover:text-white/60">Epictetus</h1>
+				</Link>
 				<div className="lg:hidden">
 					<Image src={Search} alt="Search input" />
 				</div>
 				<div className="hidden lg:block">
 					<nav>
 						<ul className="flex gap-[2.8125rem]">
-							{HeaderNavigationItems.map((item) => (
-								<li className="text-base text-white" key={item.name}>
-									<Link href={item.href}>{item.name}</Link>
-								</li>
-							))}
+							{categories.map(
+								(category) =>
+									category.featuredCategory && (
+										<li
+											className="text-base text-white hover:text-white/60"
+											key={category.title}
+										>
+											<Link href={`/category/${category.slug}`}>
+												{category.title}
+											</Link>
+										</li>
+									)
+							)}
 						</ul>
 					</nav>
 				</div>
