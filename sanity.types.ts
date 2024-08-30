@@ -11,7 +11,6 @@
  * https://www.sanity.io/docs/sanity-typegen
  * ---------------------------------------------------------------------------------
  */
-
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
@@ -150,16 +149,8 @@ export type Author = {
 	name?: string;
 	slug?: Slug;
 	image?: {
-		asset?: {
-			_ref: string;
-			_type: 'reference';
-			_weak?: boolean;
-			[internalGroqTypeReferenceTo]?: 'sanity.imageAsset';
-		};
-		hotspot?: SanityImageHotspot;
-		crop?: SanityImageCrop;
-		alt?: string;
-		_type: 'image';
+		asset: ImageAsset;
+		alt: string;
 	};
 	bio?: Array<{
 		children?: Array<{
@@ -307,8 +298,95 @@ export type AllSanitySchemaTypes =
 	| SanityImageMetadata;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {    featured,    _id,    description,    title,    publishedAt,    "slug": slug.current,    mainImage { ..., asset -> {..., metadata}},    author -> {image { ..., asset -> {..., metadata}}, name, role},    categories[]->{      title    },}
+// Query: *[_type == "post" && defined(slug.current)] | order(publishedAt desc) {    featured,    _id,    description,    title,    publishedAt,    "slug": slug.current,    mainImage { ..., asset -> {..., metadata}},    author -> {image { ..., asset -> {..., metadata}}, name, role, "slug": slug.current},    categories[]->{      title    },}
 export type POSTS_QUERYResult = Array<{
+	featured: boolean | null;
+	_id: string;
+	description: string | null;
+	title: string | null;
+	publishedAt: string | null;
+	slug: string | null;
+	mainImage: {
+		asset: {
+			_id: string;
+			_type: 'sanity.imageAsset';
+			_createdAt: string;
+			_updatedAt: string;
+			_rev: string;
+			originalFilename?: string;
+			label?: string;
+			title?: string;
+			description?: string;
+			altText?: string;
+			sha1hash?: string;
+			extension?: string;
+			mimeType?: string;
+			size?: number;
+			assetId?: string;
+			uploadId?: string;
+			path?: string;
+			url?: string;
+			metadata: SanityImageMetadata | null;
+			source?: SanityAssetSourceData;
+		} | null;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: 'image';
+	} | null;
+	author: {
+		image: {
+			asset: {
+				_id: string;
+				_type: 'sanity.imageAsset';
+				_createdAt: string;
+				_updatedAt: string;
+				_rev: string;
+				originalFilename?: string;
+				label?: string;
+				title?: string;
+				description?: string;
+				altText?: string;
+				sha1hash?: string;
+				extension?: string;
+				mimeType?: string;
+				size?: number;
+				assetId?: string;
+				uploadId?: string;
+				path?: string;
+				url?: string;
+				metadata: SanityImageMetadata | null;
+				source?: SanityAssetSourceData;
+			} | null;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: 'image';
+		} | null;
+		name: string | null;
+		role: string | null;
+		slug: string | null;
+	} | null;
+	categories: Array<{
+		title: string | null;
+	}> | null;
+}>;
+// Variable: POST_QUERY
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  slug,  image,}
+export type POST_QUERYResult = {
+	_id: string;
+	title: string | null;
+	slug: Slug | null;
+	image: null;
+} | null;
+// Variable: AUTHOR_SLUG_QUERY
+// Query: *[_type == "category"] {  "slug": slug.current,}
+export type AUTHOR_SLUG_QUERYResult = Array<{
+	slug: null;
+}>;
+// Variable: POSTS_BY_AUTHOR_QUERY
+// Query: *[_type == "post" && defined(slug.current) && $author in author->slug.current] | order(publishedAt desc) {    featured,    _id,    description,    title,    publishedAt,    "slug": slug.current,    mainImage { ..., asset -> {..., metadata}},    author -> {image { ..., asset -> {..., metadata}}, name, role, "slug": slug.current},    categories[]->{      title,      "slug": slug.current,    },  }
+export type POSTS_BY_AUTHOR_QUERYResult = Array<{
 	featured: boolean | null;
 	_id: string;
 	description: string | null;
@@ -326,26 +404,22 @@ export type POSTS_QUERYResult = Array<{
 		};
 		name: string | null;
 		role: string | null;
+		slug: string | null;
 	} | null;
 	categories: Array<{
 		title: string | null;
+		slug: null;
 	}> | null;
 }>;
-// Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  slug,  image,}
-export type POST_QUERYResult = {
-	_id: string;
-	title: string;
-	slug: Slug;
-	image: null;
-};
 
 // Query TypeMap
 import '@sanity/client';
 import type { ImageAsset } from 'sanity';
 declare module '@sanity/client' {
 	interface SanityQueries {
-		'*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n    featured,\n    _id,\n    description,\n    title,\n    publishedAt,\n    "slug": slug.current,\n    mainImage { ..., asset -> {..., metadata}},\n    author -> {image { ..., asset -> {..., metadata}}, name, role},\n    categories[]->{\n      title\n    },\n}': POSTS_QUERYResult;
+		'*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n    featured,\n    _id,\n    description,\n    title,\n    publishedAt,\n    "slug": slug.current,\n    mainImage { ..., asset -> {..., metadata}},\n    author -> {image { ..., asset -> {..., metadata}}, name, role, "slug": slug.current},\n    categories[]->{\n      title\n    },\n}': POSTS_QUERYResult;
 		'*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  image,\n}': POST_QUERYResult;
+		'*[_type == "category"] {\n  "slug": slug.current,\n}': AUTHOR_SLUG_QUERYResult;
+		'\n  *[_type == "post" && defined(slug.current) && $author in author->slug.current] | order(publishedAt desc) {\n    featured,\n    _id,\n    description,\n    title,\n    publishedAt,\n    "slug": slug.current,\n    mainImage { ..., asset -> {..., metadata}},\n    author -> {image { ..., asset -> {..., metadata}}, name, role, "slug": slug.current},\n    categories[]->{\n      title,\n      "slug": slug.current,\n    },\n  }\n': POSTS_BY_AUTHOR_QUERYResult;
 	}
 }
