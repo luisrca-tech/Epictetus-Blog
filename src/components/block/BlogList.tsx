@@ -1,5 +1,3 @@
-'use client';
-
 import { cn } from '~/lib/utils';
 import { client } from '~/sanity/lib/client';
 import { POSTS_QUERY } from '~/sanity/lib/queries';
