@@ -3,13 +3,13 @@ import { Container } from '~/components/ui/Container';
 import { cn } from '~/lib/utils';
 import { client } from '~/sanity/lib/client';
 import {
-	CATEGORIES_QUERY,
+	CATEGORIES_SLUG_QUERY,
 	POSTS_BY_CATEGORY_QUERY
 } from '~/sanity/lib/queries';
 import type { POSTS_BY_CATEGORY_QUERYResult } from '~/types/PostsByCategoryResult.type';
 
 export async function generateStaticParams() {
-	const categories = await client.fetch(CATEGORIES_QUERY);
+	const categories = await client.fetch(CATEGORIES_SLUG_QUERY);
 	return categories.map((category: { slug: { current: string } }) => ({
 		slug: category.slug.current
 	}));

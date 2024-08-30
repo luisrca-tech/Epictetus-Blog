@@ -22,7 +22,11 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
   image,
 }`;
 
-export const CATEGORIES_QUERY = groq`*[_type == "category"] {
+export const CATEGORIES_SLUG_QUERY = groq`*[_type == "category"] {
+  "slug": slug.current,
+}`;
+
+export const CATEGORIES_FEATURED_QUERY = groq`*[_type == "category" && featuredCategory == true] {
   title,
   "slug": slug.current,
   featuredCategory,

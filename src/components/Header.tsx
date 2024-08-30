@@ -4,9 +4,9 @@ import Link from 'next/link';
 import Menu from '/public/images/menu.png';
 import Search from '/public/images/search.png';
 
+import type { CATEGORIES_QUERYResult } from 'sanity.types';
 import { client } from '~/sanity/lib/client';
-import { CATEGORIES_QUERY } from '~/sanity/lib/queries';
-import type { CATEGORIES_QUERYResult } from '~/types/CategoriesResult.type';
+import { CATEGORIES_FEATURED_QUERY } from '~/sanity/lib/queries';
 import { Container } from './ui/Container';
 import {
 	Sheet,
@@ -18,8 +18,9 @@ import {
 } from './ui/sheet';
 
 export async function Header() {
-	const categories =
-		await client.fetch<CATEGORIES_QUERYResult>(CATEGORIES_QUERY);
+	const categories = await client.fetch<CATEGORIES_QUERYResult>(
+		CATEGORIES_FEATURED_QUERY
+	);
 
 	return (
 		<header>
@@ -48,19 +49,16 @@ export async function Header() {
 							</SheetHeader>
 							<nav>
 								<ul className="flex flex-col gap-3 pt-10">
-									{categories.map(
-										(category) =>
-											category.featuredCategory && (
-												<li
-													className="text-base text-white hover:text-white/60"
-													key={category.title}
-												>
-													<Link href={`/category/${category.slug}`}>
-														{category.title}
-													</Link>
-												</li>
-											)
-									)}
+									{categories.map((category) => (
+										<li
+											className="text-base text-white hover:text-white/60"
+											key={category.title}
+										>
+											<Link href={`/category/${category.slug}`}>
+												{category.title}
+											</Link>
+										</li>
+									))}
 								</ul>
 							</nav>
 						</SheetContent>
@@ -78,19 +76,16 @@ export async function Header() {
 				<div className="hidden lg:block">
 					<nav>
 						<ul className="flex gap-[2.8125rem]">
-							{categories.map(
-								(category) =>
-									category.featuredCategory && (
-										<li
-											className="text-base text-white hover:text-white/60"
-											key={category.title}
-										>
-											<Link href={`/category/${category.slug}`}>
-												{category.title}
-											</Link>
-										</li>
-									)
-							)}
+							{categories.map((category) => (
+								<li
+									className="text-base text-white hover:text-white/60"
+									key={category.title}
+								>
+									<Link href={`/category/${category.slug}`}>
+										{category.title}
+									</Link>
+								</li>
+							))}
 						</ul>
 					</nav>
 				</div>
