@@ -12,13 +12,13 @@ export function createImprovedAction(originalAction: any) {
 
 				setTimeout(async () => {
 					await fetch('/api/revalidate', {
-						body: JSON.stringify({ tag: 'blog' }),
+						body: JSON.stringify({ tag: ['blog', 'post'] }),
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json'
 						}
 					});
-				}, 1000);
+				}, 5000);
 			}
 		};
 	};

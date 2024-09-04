@@ -2,7 +2,8 @@ import { revalidateTag } from 'next/cache';
 import { type NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
-	const { tag } = (await request.json()) as { tag: string };
+	const { tag } = (await request.json()) as { tag: string[] };
+	console.log(tag);
 
 	if (!tag) {
 		return NextResponse.json({
@@ -10,6 +11,9 @@ export async function POST(request: NextRequest) {
 			message: 'tag not provided'
 		});
 	}
-	revalidateTag(tag);
+	for (const t of tag) {
+		revalidateTag(t);
+	}
+
 	return NextResponse.json({ revalidate: true });
 }
