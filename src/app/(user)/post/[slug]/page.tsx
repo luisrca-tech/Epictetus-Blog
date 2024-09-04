@@ -20,9 +20,13 @@ type Props = {
 };
 
 const ArticlePage = async ({ params }: Props) => {
-	const post = await client.fetch<POST_QUERYResult>(POST_QUERY, {
-		slug: params.slug
-	});
+	const post = await client.fetch<POST_QUERYResult>(
+		POST_QUERY,
+		{
+			slug: params.slug
+		},
+		{ next: { tags: ['post'] } }
+	);
 
 	if (!post) return notFound();
 
@@ -39,9 +43,9 @@ const ArticlePage = async ({ params }: Props) => {
 							{dayjs(post.publishedAt).format('MMMM D, YYYY')}
 						</span>
 					</div>
-					<h2 className="mt-3 text-center font-normal text-2xl text-white leading-[2.375rem] lg:max-w-[32.8125rem]">
+					<h1 className="mt-3 text-center font-normal text-2xl text-white leading-[2.375rem] lg:max-w-[32.8125rem]">
 						{post.title}
-					</h2>
+					</h1>
 					<div className="mt-[1.875rem] flex gap-4 pt-2">
 						{post?.author?.image && (
 							<SanityImage
