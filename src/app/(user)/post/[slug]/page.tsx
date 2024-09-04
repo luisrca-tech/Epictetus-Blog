@@ -1,21 +1,16 @@
 import { PortableText } from '@portabletext/react';
 import dayjs from 'dayjs';
+import { notFound } from 'next/navigation';
 import { SanityImage } from '~/components/SanityImage';
 import RichTextComponents from '~/components/block/RichTextComponents';
 import { Container } from '~/components/ui/Container';
-import { ErrorComponent } from '~/components/ui/ErrorComponent';
 import { client } from '~/sanity/lib/client';
 import { POST_QUERY, SLUGS_QUERY } from '~/sanity/lib/queries';
 import type { POST_QUERYResult } from '~/types/PostQueryResult.type';
 
 export async function generateStaticParams() {
-	try {
-		const slugs = await client.fetch(SLUGS_QUERY);
-		return slugs.map((slug: string) => ({ slug }));
-	} catch (error) {
-		<ErrorComponent error={error} />;
-		return [];
-	}
+	const slugs = await client.fetch(SLUGS_QUERY);
+	return slugs.map((slug: string) => ({ slug }));
 }
 
 type Props = {
@@ -28,6 +23,8 @@ const ArticlePage = async ({ params }: Props) => {
 	const post = await client.fetch<POST_QUERYResult>(POST_QUERY, {
 		slug: params.slug
 	});
+
+	if (!post) return notFound();
 
 	return (
 		<Container>
