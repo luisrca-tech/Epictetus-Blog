@@ -3,7 +3,6 @@ import { type NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
 	const { tag } = (await request.json()) as { tag: string[] };
-	console.log(tag);
 
 	if (!tag) {
 		return NextResponse.json({
