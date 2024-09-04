@@ -5,7 +5,11 @@ import type { POSTS_QUERYResult } from '~/types/PostsQueryResult.type';
 import { ArticleCard } from '../ui/ArticleCard';
 
 export async function BlogList() {
-	const posts = await client.fetch<POSTS_QUERYResult>(POSTS_QUERY);
+	const posts = await client.fetch<POSTS_QUERYResult>(
+		POSTS_QUERY,
+		{},
+		{ next: { tags: ['blog'] } }
+	);
 	const featuredPost = posts.find((post) => post.featured);
 
 	return (
