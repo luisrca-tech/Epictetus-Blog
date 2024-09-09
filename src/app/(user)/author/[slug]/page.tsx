@@ -24,7 +24,8 @@ export default async function ArticleByAuthor({ params }: Props) {
 		POSTS_BY_AUTHOR_QUERY,
 		{
 			author: slug
-		}
+		},
+		{ next: { tags: ['blog'] } }
 	);
 
 	const featuredPost = postsByAuthor.find((post) => post.featured);
