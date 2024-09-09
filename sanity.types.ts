@@ -316,6 +316,87 @@ export type POSTS_QUERYResult = Array<{
 	publishedAt: string | null;
 	slug: string | null;
 	mainImage: {
+		asset: {
+			_id: string;
+			_type: 'sanity.imageAsset';
+			_createdAt: string;
+			_updatedAt: string;
+			_rev: string;
+			originalFilename?: string;
+			label?: string;
+			title?: string;
+			description?: string;
+			altText?: string;
+			sha1hash?: string;
+			extension?: string;
+			mimeType?: string;
+			size?: number;
+			assetId?: string;
+			uploadId?: string;
+			path?: string;
+			url?: string;
+			metadata: SanityImageMetadata | null;
+			source?: SanityAssetSourceData;
+		} | null;
+		hotspot?: SanityImageHotspot;
+		crop?: SanityImageCrop;
+		alt?: string;
+		_type: 'image';
+	} | null;
+	author: {
+		image: {
+			asset: {
+				_id: string;
+				_type: 'sanity.imageAsset';
+				_createdAt: string;
+				_updatedAt: string;
+				_rev: string;
+				originalFilename?: string;
+				label?: string;
+				title?: string;
+				description?: string;
+				altText?: string;
+				sha1hash?: string;
+				extension?: string;
+				mimeType?: string;
+				size?: number;
+				assetId?: string;
+				uploadId?: string;
+				path?: string;
+				url?: string;
+				metadata: SanityImageMetadata | null;
+				source?: SanityAssetSourceData;
+			} | null;
+			hotspot?: SanityImageHotspot;
+			crop?: SanityImageCrop;
+			alt?: string;
+			_type: 'image';
+		} | null;
+		name: string | null;
+		role: string | null;
+	} | null;
+	categories: Array<{
+		title: string | null;
+	}> | null;
+}>;
+// Variable: POST_QUERY
+// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  slug,  image,}
+export type POST_QUERYResult = {
+	_id: string;
+	title: string | null;
+	slug: Slug | null;
+	image: null;
+} | null;
+// Variable: SEARCH_POSTS_QUERY
+// Query: *[_type == "post" && title match $title] | order(publishedAt desc) {  featured,  _id,  description,  title,  publishedAt,  "slug": slug.current,  mainImage { ..., asset -> {..., metadata}},  author -> {image { ..., asset -> {..., metadata}}, name, role},  categories[]->{    title  },}
+export type SEARCH_POSTS_QUERYResult = Array<{
+	featured: boolean | null;
+	_id: string;
+	description: string | null;
+	title: string | null;
+	publishedAt: string | null;
+	slug: string | null;
+	mainImage: {
 		asset: ImageAsset;
 		alt: string;
 	};
@@ -331,14 +412,6 @@ export type POSTS_QUERYResult = Array<{
 		title: string | null;
 	}> | null;
 }>;
-// Variable: POST_QUERY
-// Query: *[_type == "post" && slug.current == $slug][0]{  _id,  title,  slug,  image,}
-export type POST_QUERYResult = {
-	_id: string;
-	title: string;
-	slug: Slug;
-	image: null;
-};
 
 // Query TypeMap
 import '@sanity/client';
@@ -347,5 +420,6 @@ declare module '@sanity/client' {
 	interface SanityQueries {
 		'*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n    featured,\n    _id,\n    description,\n    title,\n    publishedAt,\n    "slug": slug.current,\n    mainImage { ..., asset -> {..., metadata}},\n    author -> {image { ..., asset -> {..., metadata}}, name, role},\n    categories[]->{\n      title\n    },\n}': POSTS_QUERYResult;
 		'*[_type == "post" && slug.current == $slug][0]{\n  _id,\n  title,\n  slug,\n  image,\n}': POST_QUERYResult;
+		'*[_type == "post" && title match $title] | order(publishedAt desc) {\n  featured,\n  _id,\n  description,\n  title,\n  publishedAt,\n  "slug": slug.current,\n  mainImage { ..., asset -> {..., metadata}},\n  author -> {image { ..., asset -> {..., metadata}}, name, role},\n  categories[]->{\n    title\n  },\n}': SEARCH_POSTS_QUERYResult;
 	}
 }
