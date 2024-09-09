@@ -1,13 +1,12 @@
 'use client';
 
+import { useAtom } from 'jotai';
+import { filteredSearchPosts } from '~/atom/filteredSearchPosts';
 import { cn } from '~/lib/utils';
-import { client } from '~/sanity/lib/client';
-import { POSTS_QUERY } from '~/sanity/lib/queries';
-import type { POSTS_QUERYResult } from '~/types/PostsQueryResult.type';
 import { ArticleCard } from '../ui/ArticleCard';
 
-export async function BlogList() {
-	const posts = await client.fetch<POSTS_QUERYResult>(POSTS_QUERY);
+export function BlogList() {
+	const [posts] = useAtom(filteredSearchPosts);
 	const featuredPost = posts.find((post) => post.featured);
 
 	return (
