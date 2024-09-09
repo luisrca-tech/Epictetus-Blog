@@ -16,13 +16,14 @@ type Props = {
 
 export const SanityImage = ({ image, className }: Props) => {
 	const imageProps = useNextSanityImage(client, image);
+	const blurDataURL = image.asset?.metadata.lqip;
 
 	return (
 		<Image
 			className={cn(className)}
 			{...imageProps}
-			placeholder="blur"
-			blurDataURL={image.asset?.metadata.lqip}
+			placeholder={blurDataURL ? 'blur' : undefined}
+			blurDataURL={blurDataURL}
 			alt={image.alt}
 		/>
 	);

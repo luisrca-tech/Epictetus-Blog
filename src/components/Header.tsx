@@ -4,9 +4,9 @@ import Link from 'next/link';
 import Menu from '/public/images/menu.png';
 import Search from '/public/images/search.png';
 
-import type { CATEGORIES_QUERYResult } from 'sanity.types';
 import { client } from '~/sanity/lib/client';
 import { CATEGORIES_FEATURED_QUERY } from '~/sanity/lib/queries';
+import type { CATEGORIES_FEATURED_QUERYResult } from '~/types/CategoriesFeaturedResult.type';
 import { Container } from './ui/Container';
 import {
 	Sheet,
@@ -18,7 +18,7 @@ import {
 } from './ui/sheet';
 
 export async function Header() {
-	const categories = await client.fetch<CATEGORIES_QUERYResult>(
+	const categories = await client.fetch<CATEGORIES_FEATURED_QUERYResult>(
 		CATEGORIES_FEATURED_QUERY
 	);
 
