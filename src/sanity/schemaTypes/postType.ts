@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { client } from '../lib/client';
 
 export const postType = defineType({
 	name: 'post',
@@ -7,7 +8,8 @@ export const postType = defineType({
 	fields: [
 		defineField({
 			name: 'title',
-			type: 'string'
+			type: 'string',
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'slug',
@@ -15,12 +17,14 @@ export const postType = defineType({
 			options: {
 				source: 'title',
 				maxLength: 96
-			}
+			},
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'author',
 			type: 'reference',
-			to: { type: 'author' }
+			to: { type: 'author' },
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'mainImage',
@@ -34,12 +38,14 @@ export const postType = defineType({
 					type: 'string',
 					title: 'Alternative text'
 				}
-			]
+			],
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'categories',
 			type: 'array',
-			of: [{ type: 'reference', to: { type: 'category' } }]
+			of: [{ type: 'reference', to: { type: 'category' } }],
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'publishedAt',
@@ -48,6 +54,29 @@ export const postType = defineType({
 		defineField({
 			name: 'body',
 			type: 'blockContent'
+		}),
+		defineField({
+			name: 'description',
+			type: 'text',
+			validation: (Rule) => Rule.required()
+		}),
+		defineField({
+			name: 'featured',
+			type: 'boolean',
+			validation: (Rule) =>
+				Rule.custom(async (value, context) => {
+					if (value) {
+						const { document } = context;
+						const existingFeaturedPosts = await client.fetch(
+							`*[_type == "post" && featured == true && _id != $id]`,
+							{ id: document?._id, title: document?.title }
+						);
+						if (existingFeaturedPosts.length > 0) {
+							return `${existingFeaturedPosts[0].title} is already featured`;
+						}
+					}
+					return true;
+				})
 		})
 	],
 	preview: {
