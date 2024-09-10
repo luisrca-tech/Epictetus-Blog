@@ -1,4 +1,4 @@
-import { PostsBlog } from '~/components/block/PostsBlog';
+import { BlogList } from '~/components/block/BlogList';
 import { Container } from '~/components/ui/Container';
 
 export default function HomePage() {
@@ -6,7 +6,7 @@ export default function HomePage() {
 		<Container>
 			<main>
 				<div className="pt-7 pb-8">
-					<PostsBlog />
+					<BlogList />
 				</div>
 			</main>
 		</Container>
