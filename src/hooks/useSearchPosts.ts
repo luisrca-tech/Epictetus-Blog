@@ -10,13 +10,16 @@ export function useSearchPosts(searchTerm: string) {
 	const [, setFilteredSearchPosts] = useAtom(filteredSearchPosts);
 
 	useEffect(() => {
+		const abortController = new AbortController();
+		const signal = abortController.signal;
 		const fetchPosts = async () => {
 			if (searchTerm) {
 				const filteredPosts = await client.fetch<SEARCH_POSTS_QUERYResult>(
 					SEARCH_POSTS_QUERY,
 					{
 						title: `*${searchTerm}*`
-					}
+					},
+					{ signal }
 				);
 				setFilteredSearchPosts(filteredPosts);
 			} else {
@@ -26,5 +29,9 @@ export function useSearchPosts(searchTerm: string) {
 		};
 
 		fetchPosts();
+
+		return () => {
+			abortController.abort();
+		};
 	}, [searchTerm, setFilteredSearchPosts]);
 }
