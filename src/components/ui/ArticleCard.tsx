@@ -25,7 +25,7 @@ export function ArticleCard({ post }: { post: POSTS_QUERYResult[0] }) {
 				</div>
 				<Link
 					href={`/post/${post.slug}`}
-					className="font-normal text-2xl text-white leading-[2.375rem]"
+					className="font-normal text-2xl text-white leading-[2.375rem] hover:text-white/60"
 				>
 					{post.title}
 				</Link>
