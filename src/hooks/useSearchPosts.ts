@@ -19,11 +19,15 @@ export function useSearchPosts(searchTerm: string) {
 					{
 						title: `*${searchTerm}*`
 					},
-					{ signal }
+					{ signal, next: { tags: ['blog'] } }
 				);
 				setFilteredSearchPosts(filteredPosts);
 			} else {
-				const allPosts = await client.fetch<POSTS_QUERYResult>(POSTS_QUERY);
+				const allPosts = await client.fetch<POSTS_QUERYResult>(
+					POSTS_QUERY,
+					{},
+					{ next: { tags: ['blog'] } }
+				);
 				setFilteredSearchPosts(allPosts);
 			}
 		};

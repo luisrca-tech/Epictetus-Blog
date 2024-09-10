@@ -5,7 +5,11 @@ import { POSTS_QUERY } from '~/sanity/lib/queries';
 import type { POSTS_QUERYResult } from '~/types/PostsQueryResult.type';
 
 export default async function HomePage() {
-	const posts = await client.fetch<POSTS_QUERYResult>(POSTS_QUERY);
+	const posts = await client.fetch<POSTS_QUERYResult>(
+		POSTS_QUERY,
+		{},
+		{ next: { tags: ['blog'] } }
+	);
 
 	return (
 		<Container>
