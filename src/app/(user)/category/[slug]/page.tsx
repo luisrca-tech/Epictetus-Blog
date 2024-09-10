@@ -28,7 +28,8 @@ export default async function ArticleByCategory({ params }: Props) {
 		POSTS_BY_CATEGORY_QUERY,
 		{
 			category: slug
-		}
+		},
+		{ next: { tags: ['blog'] } }
 	);
 
 	const featuredPost = PostsByCategory.find((post) => post.featured);
