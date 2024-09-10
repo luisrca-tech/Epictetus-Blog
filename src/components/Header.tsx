@@ -1,10 +1,14 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
 import Menu from '/public/images/menu.png';
 import Search from '/public/images/search.png';
 
+import { useState } from 'react';
 import { HeaderNavigationItems } from '~/constants/HeaderNavigationItems';
+import { cn } from '~/lib/utils';
 import { SearchArticle } from './SearchArticle';
 import { Container } from './ui/Container';
 import {
@@ -17,6 +21,12 @@ import {
 } from './ui/sheet';
 
 export function Header() {
+	const [isInputVisible, setIsInputVisible] = useState(false);
+
+	const toggleInputVisibility = () => {
+		setIsInputVisible((prev) => !prev);
+	};
+
 	return (
 		<header>
 			<Container className="flex items-center justify-between pt-9 pb-8 lg:pt-20 lg:pb-[3.8125rem]">
@@ -54,14 +64,24 @@ export function Header() {
 						</SheetContent>
 					</Sheet>
 				</div>
-				<Link href="/" className="flex items-center gap-3">
+				<Link
+					href="/"
+					className={cn(
+						`flex items-center gap-3 ${isInputVisible && 'hidden'}`
+					)}
+				>
 					<div className="flex h-[2.1875rem] w-[2.1875rem] items-center justify-center rounded-[0.1875rem] bg-base-300">
 						<span className="font-semibold text-lg text-white">E</span>
 					</div>
 					<h1 className="text-lg text-white">Epictetus</h1>
 				</Link>
 				<div className="lg:hidden">
-					<Image src={Search} alt="Search input" />
+					<Image
+						src={Search}
+						alt="Search input"
+						className={cn(`${isInputVisible && 'hidden'}`)}
+						onClick={toggleInputVisibility}
+					/>
 				</div>
 				<div className="hidden lg:block">
 					<nav>
@@ -74,7 +94,7 @@ export function Header() {
 						</ul>
 					</nav>
 				</div>
-				<div className="hidden lg:block">
+				<div className={cn(`hidden ${isInputVisible ? 'block' : 'hidden'}`)}>
 					<div className="relative flex items-center">
 						<Image
 							src={Search}
