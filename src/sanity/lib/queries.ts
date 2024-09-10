@@ -18,7 +18,13 @@ export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug][0]{
   _id,
   title,
   slug,
-  image,
+  mainImage { ..., asset -> {..., metadata}},
+  author -> {image { ..., asset -> {..., metadata}}, name, role},
+  publishedAt,
+  categories[]->{
+      title
+    },
+    body,
 }`;
 
 export const SEARCH_POSTS_QUERY = groq`*[_type == "post" && title match $title] | order(publishedAt desc) {
@@ -34,3 +40,4 @@ export const SEARCH_POSTS_QUERY = groq`*[_type == "post" && title match $title] 
     title
   },
 }`;
+export const SLUGS_QUERY = groq`*[_type == "post"].slug.current`;

@@ -54,12 +54,12 @@ export function Header() {
 						</SheetContent>
 					</Sheet>
 				</div>
-				<div className="flex items-center gap-3">
+				<Link href="/" className="flex items-center gap-3">
 					<div className="flex h-[2.1875rem] w-[2.1875rem] items-center justify-center rounded-[0.1875rem] bg-base-300">
 						<span className="font-semibold text-lg text-white">E</span>
 					</div>
 					<h1 className="text-lg text-white">Epictetus</h1>
-				</div>
+				</Link>
 				<div className="lg:hidden">
 					<Image src={Search} alt="Search input" />
 				</div>
