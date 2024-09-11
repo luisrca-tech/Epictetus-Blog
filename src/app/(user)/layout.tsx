@@ -3,6 +3,7 @@ import '~/styles/globals.css';
 import type { Metadata } from 'next';
 import { inter } from '~/assets/fonts/inter';
 import { Header } from '~/components/Header';
+import { Footer } from '~/components/ui/Footer';
 
 export const metadata: Metadata = {
 	title: 'Epictetus',
@@ -19,6 +20,7 @@ export default function RootLayout({
 			<body className="min-h-screen bg-gradient-to-t from-gradient-200 to-gradient-100">
 				<Header />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);
