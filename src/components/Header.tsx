@@ -66,9 +66,9 @@ export function Header() {
 				</div>
 				<Link
 					href="/"
-					className={cn(
-						`flex items-center gap-3 ${isInputVisible && 'hidden'}`
-					)}
+					className={cn('flex items-center gap-3 lg:block', {
+						hidden: isInputVisible
+					})}
 				>
 					<div className="flex h-[2.1875rem] w-[2.1875rem] items-center justify-center rounded-[0.1875rem] bg-base-300">
 						<span className="font-semibold text-lg text-white">E</span>
@@ -79,7 +79,7 @@ export function Header() {
 					<Image
 						src={Search}
 						alt="Search input"
-						className={cn(`${isInputVisible && 'hidden'}`)}
+						className={cn({ hidden: isInputVisible })}
 						onClick={toggleInputVisibility}
 					/>
 				</div>
@@ -94,7 +94,12 @@ export function Header() {
 						</ul>
 					</nav>
 				</div>
-				<div className={cn(`hidden ${isInputVisible ? 'block' : 'hidden'}`)}>
+				<div
+					className={cn('lg:block', {
+						block: isInputVisible,
+						hidden: !isInputVisible
+					})}
+				>
 					<div className="relative flex items-center">
 						<Image
 							src={Search}
