@@ -7,8 +7,8 @@ import type { POSTS_BY_AUTHOR_QUERYResult } from '~/types/PostsByAuthorResult.ty
 
 export async function generateStaticParams() {
 	const authors = await client.fetch(AUTHOR_SLUG_QUERY);
-	return authors.map((category: { slug: { current: string } }) => ({
-		slug: category.slug.current
+	return authors.map((author: { slug: { current: string } }) => ({
+		slug: author.slug.current
 	}));
 }
 
