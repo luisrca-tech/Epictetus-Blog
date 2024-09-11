@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 	const sitemapEntries = routes.map(
 		(post: { slug: string; _updatedAt: string }) => ({
-			url: `${url}/post/${post.slug}`,
+			url: `https://${url}/post/${post.slug}`,
 			lastModified: new Date(post._updatedAt),
 			changeFrequency: 'monthly',
 			priority: 0.8
