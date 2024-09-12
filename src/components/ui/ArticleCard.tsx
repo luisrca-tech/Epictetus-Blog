@@ -48,9 +48,12 @@ export async function ArticleCard({ post }: { post: POSTS_QUERYResult[0] }) {
 						/>
 					)}
 					<div className="flex flex-col gap-2">
-						<span className="font-normal text-sm text-white">
+						<Link
+							href={`/author/${post.author?.slug}`}
+							className="font-normal text-sm text-white hover:text-white/60"
+						>
 							{post.author?.name}
-						</span>
+						</Link>
 						<span className="font-normal text-sm text-white/60">
 							{post.author?.role}
 						</span>
