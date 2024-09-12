@@ -4,7 +4,7 @@ import { cn } from '~/lib/utils';
 import type { POSTS_QUERYResult } from '~/types/PostsQueryResult.type';
 import { SanityImage } from '../SanityImage';
 
-export async function ArticleCard({ post }: { post: POSTS_QUERYResult[0] }) {
+export function ArticleCard({ post }: { post: POSTS_QUERYResult[0] }) {
 	return (
 		<article
 			className={`${post.featured && 'lg:flex-row lg:gap-8'} flex flex-col`}
