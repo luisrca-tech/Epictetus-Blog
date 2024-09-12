@@ -15,9 +15,15 @@ export async function ArticleCard({ post }: { post: POSTS_QUERYResult[0] }) {
 			/>
 			<div className="flex flex-col gap-[0.6875rem] pt-5">
 				<div className="flex items-center gap-3">
-					<span className="font-normal text-sm text-white/60">
-						{post.categories?.map((category) => category.title)}
-					</span>
+					{post.categories?.slice(0, 2).map((category) => (
+						<Link
+							key={category.slug}
+							href={`/category/${category.slug}`}
+							className="font-normal text-sm text-white/60 hover:text-white"
+						>
+							{category.title}
+						</Link>
+					))}
 					<div className="h-1 w-1 rounded-full bg-white/60" />
 					<span className="font-normal text-sm text-white/60">
 						{dayjs(post.publishedAt).format('MMMM D, YYYY')}
@@ -25,7 +31,7 @@ export async function ArticleCard({ post }: { post: POSTS_QUERYResult[0] }) {
 				</div>
 				<Link
 					href={`/post/${post.slug}`}
-					className="font-normal text-2xl text-white leading-[2.375rem]"
+					className="font-normal text-2xl text-white leading-[2.375rem] hover:text-white/60"
 				>
 					{post.title}
 				</Link>
