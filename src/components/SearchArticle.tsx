@@ -2,12 +2,9 @@
 
 import { useAtom } from 'jotai';
 import { searchTerm } from '~/atom/searchTerm';
-import { useSearchPosts } from '~/hooks/useSearchPosts';
 
 export function SearchArticle() {
 	const [searchValue, setSearchValue] = useAtom(searchTerm);
-
-	useSearchPosts();
 
 	const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(event.target.value);
