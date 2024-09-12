@@ -66,7 +66,7 @@ export function Header() {
 				</div>
 				<Link
 					href="/"
-					className={cn('flex items-center gap-3 lg:block', {
+					className={cn('flex items-center gap-3 lg:flex', {
 						hidden: isInputVisible
 					})}
 				>
