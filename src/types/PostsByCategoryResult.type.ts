@@ -1,12 +1,12 @@
 import type { ImageAsset } from 'sanity';
 
-export type POSTS_QUERYResult = Array<{
+export type POSTS_BY_CATEGORY_QUERYResult = Array<{
 	featured: boolean | null;
 	_id: string;
 	description: string | null;
 	title: string | null;
 	publishedAt: string | null;
-	slug: string;
+	slug: string | null;
 	mainImage: {
 		asset: ImageAsset;
 		alt: string;
@@ -18,10 +18,9 @@ export type POSTS_QUERYResult = Array<{
 		};
 		name: string | null;
 		role: string | null;
-		slug: string | null;
 	} | null;
 	categories: Array<{
 		title: string | null;
-		slug: string;
+		slug: null;
 	}> | null;
 }>;

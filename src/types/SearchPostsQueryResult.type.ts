@@ -1,6 +1,6 @@
 import type { ImageAsset } from 'sanity';
 
-export type POSTS_QUERYResult = Array<{
+export type SEARCH_POSTS_QUERYResult = Array<{
 	featured: boolean | null;
 	_id: string;
 	description: string | null;
@@ -18,10 +18,10 @@ export type POSTS_QUERYResult = Array<{
 		};
 		name: string | null;
 		role: string | null;
-		slug: string | null;
+		slug: string;
 	} | null;
 	categories: Array<{
 		title: string | null;
 		slug: string;
-	}> | null;
+	}>;
 }>;

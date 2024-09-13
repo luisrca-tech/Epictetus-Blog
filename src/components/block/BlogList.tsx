@@ -1,14 +1,25 @@
 'use client';
 
+import { useAtom } from 'jotai';
+import { filteredSearchPosts } from '~/atom/filteredSearchPosts';
+import { useSearchPosts } from '~/hooks/useSearchPosts';
 import { cn } from '~/lib/utils';
-import { client } from '~/sanity/lib/client';
-import { POSTS_QUERY } from '~/sanity/lib/queries';
 import type { POSTS_QUERYResult } from '~/types/PostsQueryResult.type';
 import { ArticleCard } from '../ui/ArticleCard';
+import { NoResult } from '../ui/NoResult';
 
-export async function BlogList() {
-	const posts = await client.fetch<POSTS_QUERYResult>(POSTS_QUERY);
-	const featuredPost = posts.find((post) => post.featured);
+type Props = {
+	posts: POSTS_QUERYResult;
+};
+
+export function BlogList({ posts }: Props) {
+	const [filteredPosts] = useAtom(filteredSearchPosts);
+	const hasResult = useSearchPosts();
+	const finalData = filteredPosts.length > 0 ? filteredPosts : posts;
+
+	const featuredPost = finalData.find((post) => post.featured);
+
+	if (!hasResult) return <NoResult />;
 
 	return (
 		<div className="flex flex-col md:grid md:grid-cols-3 md:gap-[1.875rem] lg:grid lg:grid-cols-3 lg:gap-[1.875rem]">
@@ -17,7 +28,7 @@ export async function BlogList() {
 					<ArticleCard post={featuredPost} />
 				</div>
 			)}
-			{posts.map(
+			{finalData.map(
 				(post) =>
 					!post.featured && (
 						<div

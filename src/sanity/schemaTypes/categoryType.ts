@@ -6,11 +6,25 @@ export const categoryType = defineType({
 	fields: [
 		defineField({
 			name: 'title',
-			type: 'string'
+			type: 'string',
+			validation: (Rule) => Rule.required()
 		}),
 		defineField({
 			name: 'description',
 			type: 'text'
+		}),
+		defineField({
+			name: 'slug',
+			type: 'slug',
+			options: {
+				source: 'title'
+			},
+			validation: (Rule) => Rule.required()
+		}),
+		defineField({
+			name: 'featuredCategory',
+			type: 'boolean',
+			title: 'Featured Category'
 		})
 	]
 });
