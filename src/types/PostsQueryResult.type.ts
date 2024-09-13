@@ -18,10 +18,10 @@ export type POSTS_QUERYResult = Array<{
 		};
 		name: string | null;
 		role: string | null;
-		slug: string | null;
+		slug: string;
 	} | null;
 	categories: Array<{
 		title: string | null;
 		slug: string;
-	}> | null;
+	}>;
 }>;
