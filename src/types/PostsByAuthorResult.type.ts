@@ -22,6 +22,6 @@ export type POSTS_BY_AUTHOR_QUERYResult = Array<{
 	};
 	categories: Array<{
 		title: string | null;
-		slug: string | null;
+		slug: string;
 	}>;
 }>;
