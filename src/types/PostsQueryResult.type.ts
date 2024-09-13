@@ -6,7 +6,7 @@ export type POSTS_QUERYResult = Array<{
 	description: string | null;
 	title: string | null;
 	publishedAt: string | null;
-	slug: string | null;
+	slug: string;
 	mainImage: {
 		asset: ImageAsset;
 		alt: string;
