@@ -6,7 +6,7 @@ export type SEARCH_POSTS_QUERYResult = Array<{
 	description: string | null;
 	title: string | null;
 	publishedAt: string | null;
-	slug: string | null;
+	slug: string;
 	mainImage: {
 		asset: ImageAsset;
 		alt: string;
@@ -18,8 +18,10 @@ export type SEARCH_POSTS_QUERYResult = Array<{
 		};
 		name: string | null;
 		role: string | null;
+		slug: string;
 	} | null;
 	categories: Array<{
 		title: string | null;
-	}> | null;
+		slug: string;
+	}>;
 }>;

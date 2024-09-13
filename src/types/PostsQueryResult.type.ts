@@ -6,7 +6,7 @@ export type POSTS_QUERYResult = Array<{
 	description: string | null;
 	title: string | null;
 	publishedAt: string | null;
-	slug: string | null;
+	slug: string;
 	mainImage: {
 		asset: ImageAsset;
 		alt: string;
@@ -16,12 +16,12 @@ export type POSTS_QUERYResult = Array<{
 			asset: ImageAsset;
 			alt: string;
 		};
-		name: string;
-		role: string;
-		slug: string;
+		name: string | null;
+		role: string | null;
+		slug: string | null;
 	} | null;
 	categories: Array<{
 		title: string | null;
-		slug: string | null;
+		slug: string;
 	}> | null;
 }>;

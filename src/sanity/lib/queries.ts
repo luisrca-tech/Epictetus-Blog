@@ -1,5 +1,10 @@
 import { groq } from 'next-sanity';
 
+export const routeQuery = `*[_type == "post"]{
+  "slug": slug.current,
+  _updatedAt
+}`;
+
 export const POSTS_QUERY = groq`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
     featured,
     _id,
