@@ -11,7 +11,9 @@ export function ArticleCard({ post }: { post: POSTS_QUERYResult[0] }) {
 		>
 			<SanityImage
 				image={post.mainImage}
-				className={cn(`${post.featured && 'lg:w-2/3'} w-full object-cover`)}
+				className={cn(
+					`${post.featured && 'max-h-none lg:w-2/3'} max-h-[13.3125rem] w-full rounded-[0.625rem] object-cover`
+				)}
 			/>
 			<div className="flex flex-col gap-[0.6875rem] pt-5">
 				<div className="flex items-center gap-3">
