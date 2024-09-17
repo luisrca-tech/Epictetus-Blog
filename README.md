@@ -12,26 +12,26 @@ Installation
 Clone the repository:
 
 bash
-Copiar código
+Copy Code
 git clone https://github.com/yourusername/blog-project.git
 Install dependencies:
 
 bash
-Copiar código
+Copy Code
 cd blog-project
 npm install
 Set up environment variables:
 
 Create a .env.local file and add the following:
 makefile
-Copiar código
+Copy Code
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=your_dataset
 NEXT_PUBLIC_SANITY_API_VERSION=your_api_version
 Run the development server:
 
 bash
-Copiar código
+Copy Code
 npm run dev
 Visit http://localhost:3000 to view the blog.
 
@@ -57,7 +57,7 @@ Access the Sanity Studio:
 To open the Sanity Studio, simply add /studio to your blog's URL. For example:
 
 bash
-Copiar código
+Copy Code
 http://localhost:3000/studio
 Log in:
 Sign in using your Sanity account credentials.
