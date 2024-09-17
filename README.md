@@ -15,9 +15,9 @@ This project is a blog built with **Sanity** as the content platform. It include
 
 1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/yourusername/blog-project.git
-   ```
+ ```bash
+ git clone https://github.com/yourusername/blog-project.git
+ ```
 
 ```bash
 cd blog-project
