@@ -17,29 +17,35 @@ This project is a blog built with **Sanity** as the content platform. It include
 
    ```bash
    git clone https://github.com/yourusername/blog-project.git
+   ```
 
 ```bash
 cd blog-project
 npm install
+```
 
 ```bash
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=your_dataset
 NEXT_PUBLIC_SANITY_API_VERSION=your_api_version
+```
 
 ```bash
 npm run dev
+```
 
 Visit http://localhost:3000 to view the blog.
 
-Features
+[Features](#features)
+
 Static and Dynamic Pagination: Efficient pagination for displaying blog posts.
 GROQ Queries: Custom queries to fetch data from Sanity.
 Search and Filter: Filter blog posts by category, author, and keywords.
 Static Blog Post Pages: Individual pages for blog posts using Sanity’s slug-based routing.
 Client-Side Query Revalidation: Posts are revalidated in real-time when published in the Sanity Studio.
 
-How to Use
+[How to Use](#how-to-use)
+
 Blog Pagination
 Static pagination is used for generating paginated pages at build time.
 Dynamic pagination supports runtime updates, ensuring newly published posts are included.
@@ -53,8 +59,10 @@ Follow these steps to use Sanity Studio to manage your blog content:
 
 Access the Sanity Studio:
 To open the Sanity Studio, simply add /studio to your blog's URL. For example:
+
 ```bash
 http://localhost:3000/studio
+```
 
 Log in:
 Sign in using your Sanity account credentials.
@@ -76,10 +84,13 @@ Revalidating Blog Content:
 
 After editing or updating any post, click "Publish" in the Sanity Studio to trigger client-side revalidation.
 The changes will be reflected on the blog in real-time.
-Technologies Used
+
+[Technologies Used](#technologies-used)
+
 Sanity: Headless CMS used for managing content.
 Next.js: React framework used for server-side rendering and static generation.
 GROQ: Sanity's query language for fetching data.
 Tailwind CSS: Utility-first CSS framework for styling.
-License
+
+[License](#license)
 This project is licensed under the MIT License.
