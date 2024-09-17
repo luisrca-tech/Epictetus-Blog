@@ -21,7 +21,7 @@ This project is a blog built with **Sanity** as the content platform. It include
 
 ```bash
 cd blog-project
-npm install
+bun install
 ```
 
 ```bash
@@ -31,7 +31,7 @@ NEXT_PUBLIC_SANITY_API_VERSION=your_api_version
 ```
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 Visit http://localhost:3000 to view the blog.
