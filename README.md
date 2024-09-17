@@ -1,38 +1,35 @@
-Blog Project using Sanity
-This project is a blog built with Sanity as the content platform. It includes static and dynamic pagination, GROQ queries, search queries to filter blog posts, static pages for individual posts, filtering by category and author, and client-side query revalidation using the "publish" button within Sanity Studio.
+# Blog Project using Sanity
 
-Table of Contents
-Installation
-Features
-How to Use
-Sanity Studio Guide
-Technologies Used
-License
-Installation
-Clone the repository:
+This project is a blog built with **Sanity** as the content platform. It includes static and dynamic pagination, **GROQ queries**, search queries to filter blog posts, static pages for individual posts, filtering by category and author, and client-side query revalidation using the "publish" button within **Sanity Studio**.
 
-bash
-Copy Code
-git clone https://github.com/yourusername/blog-project.git
-Install dependencies:
+## Table of Contents
 
-bash
-Copy Code
+- [Installation](#installation)
+- [Features](#features)
+- [How to Use](#how-to-use)
+- [Sanity Studio Guide](#sanity-studio-guide)
+- [Technologies Used](#technologies-used)
+- [License](#license)
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/blog-project.git
+
+```bash
 cd blog-project
 npm install
-Set up environment variables:
 
-Create a .env.local file and add the following:
-makefile
-Copy Code
+```bash
 NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=your_dataset
 NEXT_PUBLIC_SANITY_API_VERSION=your_api_version
-Run the development server:
 
-bash
-Copy Code
+```bash
 npm run dev
+
 Visit http://localhost:3000 to view the blog.
 
 Features
@@ -41,24 +38,24 @@ GROQ Queries: Custom queries to fetch data from Sanity.
 Search and Filter: Filter blog posts by category, author, and keywords.
 Static Blog Post Pages: Individual pages for blog posts using Sanity’s slug-based routing.
 Client-Side Query Revalidation: Posts are revalidated in real-time when published in the Sanity Studio.
+
 How to Use
 Blog Pagination
 Static pagination is used for generating paginated pages at build time.
-Dynamic pagination is supported for runtime updates, ensuring newly published posts are included.
+Dynamic pagination supports runtime updates, ensuring newly published posts are included.
 Search and Filter Posts
 Users can filter posts based on categories or authors.
 The search functionality allows users to find posts by title or content using GROQ queries.
 Client-Side Revalidation
 Once a post is published or updated in Sanity Studio, the blog automatically revalidates the data, displaying the latest content without needing a full rebuild.
 Sanity Studio Guide
-Follow these steps to use the Sanity Studio to manage your blog content.
+Follow these steps to use Sanity Studio to manage your blog content:
 
 Access the Sanity Studio:
 To open the Sanity Studio, simply add /studio to your blog's URL. For example:
-
-bash
-Copy Code
+```bash
 http://localhost:3000/studio
+
 Log in:
 Sign in using your Sanity account credentials.
 
@@ -77,7 +74,7 @@ You can manage categories and authors in the "Categories" and "Authors" sections
 Assign categories and authors to posts to enable filtering on the blog frontend.
 Revalidating Blog Content:
 
-After editing or updating any post, click "Publish" in the Sanity Studio to trigger the client-side revalidation.
+After editing or updating any post, click "Publish" in the Sanity Studio to trigger client-side revalidation.
 The changes will be reflected on the blog in real-time.
 Technologies Used
 Sanity: Headless CMS used for managing content.
